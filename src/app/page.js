@@ -1,8 +1,11 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 
 export default function Home() {
+  const [data, setData] = useState(null);
+    
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('jquery').then(($) => {
@@ -34,6 +37,7 @@ export default function Home() {
             document.getElementById('getJS').addEventListener('click', function() {
               alert('check console');
               console.log(formBuilder.actions.getData());
+              setData(formBuilder.actions.getData());
             });
           });
         } else {
@@ -43,7 +47,7 @@ export default function Home() {
         console.error("Error loading dependencies:", error);
       });
     }
-  }, []);
+  }, [data]);
 
   return (
     <div>
@@ -51,6 +55,7 @@ export default function Home() {
       <Button variant="contained" color="primary" id="getXML">Get XML</Button>
       <Button variant="contained" color="secondary" id="getJSON">Get JSON</Button>
       <Button variant="contained" color="success" id="getJS">Get JS</Button>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 }
