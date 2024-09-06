@@ -25,6 +25,11 @@ export default function FormPage() {
               dataType: 'xml',
               formData: data
             });
+
+            // Add Bootstrap classes to form elements
+            $('#rendered-form').addClass('formbuilder-embedded-bootstrap');
+            $('#rendered-form .form-control').addClass('mb-3');
+            $('#rendered-form .btn').addClass('btn-primary');
           });
         } else {
           console.error("jQuery is not loaded properly.");
@@ -36,7 +41,7 @@ export default function FormPage() {
   }, [data]);
 
   return (
-    <div>
+    <div className="container mt-5">
       <textarea id="fb-template" ref={fbTemplateRef} style={{ display: 'none' }} defaultValue={data}></textarea>
       <div className="fb-render"></div>
     </div>
