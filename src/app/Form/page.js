@@ -72,7 +72,7 @@ export default function FormPage() {
       <textarea id="fb-template" ref={fbTemplateRef} style={{ display: 'none' }} defaultValue={data}></textarea>
       <form id="rendered-form" onSubmit={handleSubmit}>
         <div className="fb-render"></div>
-        <button type="submit" className="btn btn-primary mt-3">Submit</button>
+        {/* <button type="submit" className="btn btn-primary mt-3">Submit</button> */}
       </form>
     </div>
   );
