@@ -50,18 +50,7 @@ export const formSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder
-            .addCase(loginAsync.pending, (state) => {
-                state.isLogin = false
-            })
-            .addCase(loginAsync.fulfilled, (state, action) => {
-                // Add user to the state array
-                state.isLogin = true
-                state.token = action.payload.access_token
-            })
-            .addCase(loginAsync.rejected, (state) => {
-                state.isLogin = false
-            })
+            
     },
 })
 

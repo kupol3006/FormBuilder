@@ -6,9 +6,11 @@ import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PublishIcon from '@mui/icons-material/Publish';
 import { setData } from './redux/slices/formSlice';
+import { useDispatch } from 'react-redux';
 
 export default function Home() {
   // const [data, setData] = useState(null);
+  const dispatch = useDispatch();
 
   const router = useRouter();
 
@@ -45,7 +47,9 @@ export default function Home() {
             formBuilder.actions.setLang('en');
   
             document.getElementById('getXML').addEventListener('click', function() {
-              setData(formBuilder.actions.getData('xml'));
+              dispatch(setData(formBuilder.actions.getData('xml')));
+              alert(formBuilder.actions.getData('xml'));
+              router.push('/Form');
             });
           });
         } else {
@@ -97,7 +101,7 @@ export default function Home() {
             </div>
         </div>
         <div id="fb-editor"></div>
-        <Button variant="contained" color="primary" id="getXML">Get XML</Button>
+        {/* <Button variant="contained" color="primary" id="getXML">Get XML</Button> */}
         {/* <Button variant="contained" color="secondary" id="getJSON">Get JSON</Button> */}
         {/* <Button variant="contained" color="success" id="getJS">Get JS</Button> */}
       </div>
