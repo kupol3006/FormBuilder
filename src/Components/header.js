@@ -1,66 +1,21 @@
-'use client';
-import { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PublishIcon from '@mui/icons-material/Publish';
-import { setData } from './redux/slices/formSlice';
 
-export default function Home() {
-  // const [data, setData] = useState(null);
+const MyComponent = () => {
+    const router = useRouter();
 
-  const router = useRouter();
+    const handleOpenPreview = () => {
+        // Handle preview action
+    };
 
-  const handleOpenPreview = () => {
-      // Handle preview action
-  };
+    const handleOpenPublish = () => {
+        // Handle publish action
+    };
 
-  const handleOpenPublish = () => {
-      // Handle publish action
-  };
-    
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      import('jquery').then(($) => {
-        window.$ = window.jQuery = $;
-        return import('jquery-ui/ui/widgets/sortable');
-      }).then(() => {
-        return import('formBuilder');
-      }).then(() => {
-        return import('formBuilder/dist/form-render.min.js');
-      }).then(() => {
-        if (typeof $ === 'function') {
-          $(function() {
-            console.log("jQuery is ready!");
-  
-            const options = {
-              showActionButtons: false,
-              controlPosition: 'right'
-            };
-  
-            const formBuilder = $('#fb-editor').formBuilder(options);
-            console.log("formBuilder initialized:", formBuilder);
-            formBuilder.actions.setLang('en');
-  
-            document.getElementById('getXML').addEventListener('click', function() {
-              setData(formBuilder.actions.getData('xml'));
-            });
-          });
-        } else {
-          console.error("jQuery is not loaded properly.");
-        }
-      }).catch((error) => {
-        console.error("Error loading dependencies:", error);
-      });
-    }
-  }, []);
-
-  return (
-    <div className='w-full h-screen flex justify-center'>
-      <div className='w-[1200px] flex flex-col'>
-      <div className="h-[8%] flex justify-between items-center px-0 py-1 border-[1px]">
+    return (
+        <div className="h-[8%] flex justify-between items-center px-0 py-1 border-[1px]">
             <IconButton
                 onClick={() => router.push('/Dashboard')}
                 className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 rounded-md mr-2 flex items-center border-black border-[1px]"
@@ -70,7 +25,7 @@ export default function Home() {
             <div className="flex">
                 <button
                     className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 rounded-md mr-2 flex items-center border-black border-[1px]"
-                    id="getXML"
+                    onClick={handleOpenPreview}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -96,11 +51,7 @@ export default function Home() {
                 </button>
             </div>
         </div>
-        <div id="fb-editor"></div>
-        <Button variant="contained" color="primary" id="getXML">Get XML</Button>
-        {/* <Button variant="contained" color="secondary" id="getJSON">Get JSON</Button> */}
-        {/* <Button variant="contained" color="success" id="getJS">Get JS</Button> */}
-      </div>
-    </div>
-  );
-}
+    );
+};
+
+export default MyComponent;
