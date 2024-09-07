@@ -40,7 +40,18 @@ export default function Home() {
   
             const options = {
               showActionButtons: false,
-              controlPosition: 'right'
+              controlPosition: 'right',
+              fieldRemoveWarn: true,
+              scrollToFieldOnAdd: true,
+              sortableControls: true,
+              stickyControls: {
+                  enable: true,
+                  offset: {
+                      top: 20,
+                      right: 20,
+                      left: 'auto'
+                  }
+                },
             };
   
             const formBuilder = $('#fb-editor').formBuilder(options);
